@@ -1,0 +1,30 @@
+parser: "@typescript-eslint/parser"
+
+env:
+  node: true
+
+root: true
+
+parserOptions:
+  ecmaVersion: 2022
+  project: tsconfig.json
+  sourceType: module
+
+plugins:
+  - simple-import-sort
+  - type-graphql
+
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:@typescript-eslint/recommended-requiring-type-checking
+  - plugin:type-graphql/recommended
+  - plugin:prettier/recommended
+
+rules:
+  simple-import-sort/imports: "error"
+  simple-import-sort/exports: "error"
+  sort-imports: "off"
+
+ignorePatterns:
+  - /build
