@@ -19,7 +19,9 @@ jobs:
           node-version: 16
 
       - name: Run ESLint
-        run: npm run lint
+        run: |
+          npm ci
+          npm run lint
 
   typecheck:
     name: TSC
@@ -36,4 +38,6 @@ jobs:
           node-version: 16
 
       - name: Run TS Compile
-        run: npm run typecheck
+        run: |
+          npm ci
+          npm run typecheck
