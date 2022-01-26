@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+
+  graph:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    profiles:
+      - graph
+    depends_on:
+      - postgres
+    entrypoint: /app/scripts/entrypoint-dev.sh
+    environment:
+      PORT: 4000
+      NODE_ENV: production
+      DATABASE_URL: postgresql://postgres:password@postgres:5432
+    ports:
+      - 4000:4000
