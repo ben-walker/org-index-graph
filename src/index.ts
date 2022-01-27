@@ -2,10 +2,13 @@ import { ApolloServer } from "apollo-server-express";
 import express from "express";
 
 import { CORS_ORIGIN, PORT } from "./env";
+import { getServerContext } from "./server";
 
 const startServer = async () => {
   const app = express();
-  const server = new ApolloServer({});
+  const server = new ApolloServer({
+    context: getServerContext,
+  });
 
   await server.start();
   server.applyMiddleware({
