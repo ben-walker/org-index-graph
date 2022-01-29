@@ -4,7 +4,7 @@
   "repository": "github:ben-walker/org-index-graph",
   "license": "BSD-3-Clause",
   "engines": {
-    "node": "17"
+    "node": "16"
   },
   "scripts": {
     "build": "tsc",
