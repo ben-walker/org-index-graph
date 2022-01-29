@@ -8,11 +8,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "dev": "./scripts/dev.sh",
-    "down": "./scripts/down.sh",
     "lint": "eslint . --ext .ts,.js",
-    "start": "node build/src",
-    "start:dev": "ts-node-dev --exit-child --respawn src",
+    "start": "node ./build/src",
+    "start:dev": "ts-node-dev --exit-child --respawn ./src",
     "typecheck": "tsc --noEmit"
   },
   "prisma": {

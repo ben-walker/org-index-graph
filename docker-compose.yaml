@@ -15,7 +15,6 @@ services:
       - graph
     depends_on:
       - postgres
-    entrypoint: /app/scripts/entrypoint-dev.sh
     environment:
       PORT: 4000
       NODE_ENV: production
