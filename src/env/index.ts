@@ -13,3 +13,8 @@ export const IS_EMIT_SCHEMA_FILE_ENABLED = getBooleanEnvValueOrDefault(
   env.IS_EMIT_SCHEMA_FILE_ENABLED,
   !IS_PRODUCTION
 );
+
+export const IS_INTROSPECTION_ENABLED = getBooleanEnvValueOrDefault(
+  env.IS_INTROSPECTION_ENABLED,
+  !IS_PRODUCTION
+);
