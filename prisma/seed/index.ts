@@ -4,8 +4,12 @@ const prisma = new PrismaClient();
 
 const seed = async () => {
   // TODO: Create a data file for many users
-  await prisma.user.create({
-    data: {
+  await prisma.user.upsert({
+    where: {
+      email: "test@email.com",
+    },
+    update: {},
+    create: {
       email: "test@email.com",
     },
   });
