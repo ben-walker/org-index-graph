@@ -5,7 +5,7 @@ import { CORS_ORIGIN, PORT } from "./env";
 import { getGraphSchema } from "./schema";
 import { getServerContext } from "./server";
 
-const startServer = async () => {
+const startGraph = async () => {
   const schema = await getGraphSchema();
   const app = express();
   const server = new ApolloServer({
@@ -26,4 +26,4 @@ const startServer = async () => {
   console.info(`Graph server: port ${PORT} • path ${server.graphqlPath}`);
 };
 
-startServer().catch(console.error);
+startGraph().catch(console.error);
