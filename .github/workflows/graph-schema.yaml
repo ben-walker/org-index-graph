@@ -1,0 +1,23 @@
+name: Graph Schema
+
+on:
+  push:
+
+jobs:
+  sync:
+    name: Sync
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2.5.1
+        with:
+          node-version: 16
+
+      - name: Generate Schema
+        run: |
+          npm ci
+          npm run generate:schema
