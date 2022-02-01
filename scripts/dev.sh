@@ -7,9 +7,10 @@
 export DATABASE_URL="postgresql://postgres:password@localhost:5432"
 export CORS_ORIGIN="https://studio.apollographql.com"
 
-# Start compose services and wait for them to be ready
+# Start compose services
 docker compose up --detach
 
+# Wait until postgres is accepting connections
 while ! pg_isready --host=localhost --port=5432 --username=postgres; do
   sleep 1
 done
