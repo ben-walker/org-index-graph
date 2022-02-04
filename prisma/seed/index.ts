@@ -10,6 +10,7 @@ const seed = async () => {
   await prisma.user.createMany({
     data: Array.from({ length: userCount }).map(() => ({
       email: faker.internet.email(),
+      emailVerifiedAt: faker.datatype.boolean() ? faker.date.recent() : null,
     })),
     skipDuplicates: true,
   });
