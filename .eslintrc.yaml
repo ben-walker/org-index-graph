@@ -27,4 +27,4 @@ rules:
   sort-imports: "off"
 
 ignorePatterns:
-  - /build
+  - dist

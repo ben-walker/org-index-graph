@@ -19,8 +19,8 @@ lerna-debug.log*
 # IDE - VSCode
 .vscode
 
-# Build
-/build
+# Dist
+dist
 
 # Docker
 *docker*

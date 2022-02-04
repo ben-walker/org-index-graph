@@ -1,6 +1,6 @@
-import { TRUE_STRING } from "../constants";
+import { TRUE } from "../constants";
 
 export const getBooleanEnvValueOrDefault = (
   envValue: string | undefined,
   defaultValue: boolean
-) => (envValue ? envValue === TRUE_STRING : defaultValue);
+) => (envValue ? envValue === TRUE : defaultValue);

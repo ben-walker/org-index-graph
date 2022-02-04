@@ -7,12 +7,12 @@
     "node": "16"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project ./tsconfig.build.json",
     "dev": "./scripts/dev.sh",
     "down": "./scripts/down.sh",
     "generate:schema": "ts-node ./scripts/generate-schema",
     "lint": "eslint . --ext .ts,.js",
-    "start": "node ./build/src",
+    "start": "node ./dist",
     "start:dev": "ts-node-dev --exit-child --respawn ./src",
     "typecheck": "tsc --noEmit"
   },

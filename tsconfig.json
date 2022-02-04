@@ -10,15 +10,13 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noUncheckedIndexedAccess": true,
-    "outDir": "build",
     "rootDir": ".",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "target": "esnext"
   },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules"],
+  "exclude": ["./node_modules"],
   "ts-node": {
     "files": true
   }

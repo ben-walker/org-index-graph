@@ -1,4 +1,4 @@
-export const TRUE_STRING = "true";
+export const TRUE = "true";
 
 export const NODE_ENVS = {
   development: "development",
