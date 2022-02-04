@@ -6,7 +6,6 @@ import { SEED_COUNTS } from "./constants";
 const prisma = new PrismaClient();
 const { userCount } = SEED_COUNTS;
 
-// TODO: Add a util to take in a length and a schema and return an array with fake data
 const seed = async () => {
   await prisma.user.createMany({
     data: Array.from({ length: userCount }).map(() => ({
