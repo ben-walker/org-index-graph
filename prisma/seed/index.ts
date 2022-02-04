@@ -1,17 +1,18 @@
+import { faker } from "@faker-js/faker";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+import { SEED_COUNTS } from "./constants";
 
+const prisma = new PrismaClient();
+const { userCount } = SEED_COUNTS;
+
+// TODO: Add a util to take in a length and a schema and return an array with fake data
 const seed = async () => {
-  // TODO: Create a data file for many users
-  await prisma.user.upsert({
-    where: {
-      email: "test@email.com",
-    },
-    update: {},
-    create: {
-      email: "test@email.com",
-    },
+  await prisma.user.createMany({
+    data: Array.from({ length: userCount }).map(() => ({
+      email: faker.internet.email(),
+    })),
+    skipDuplicates: true,
   });
 };
 
