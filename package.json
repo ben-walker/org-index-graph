@@ -12,6 +12,7 @@
     "down": "./scripts/down.sh",
     "generate:schema": "ts-node ./scripts/generate-schema",
     "lint": "eslint . --ext .ts,.js",
+    "prebuild": "prisma generate",
     "start": "node ./dist",
     "start:dev": "ts-node-dev --exit-child --respawn ./src",
     "typecheck": "tsc --noEmit"
