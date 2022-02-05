@@ -43,7 +43,7 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-type-graphql": "^1.0.0",
     "prettier": "^2.5.1",
-    "prisma": "^3.8.1",
+    "prisma": "~3.8.1",
     "ts-node": "^10.4.0",
     "ts-node-dev": "^1.1.8",
     "typegraphql-prisma": "^0.18.4",
