@@ -11,6 +11,12 @@ generator typegraphql {
   provider = "typegraphql-prisma"
 }
 
+model Organization {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String
+}
+
 model User {
   createdAt       DateTime  @default(now())
   email           String    @unique

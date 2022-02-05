@@ -3,6 +3,12 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type AggregateOrganization {
+  _count: OrganizationCountAggregate
+  _max: OrganizationMaxAggregate
+  _min: OrganizationMinAggregate
+}
+
 type AggregateUser {
   _count: UserCountAggregate
   _max: UserMaxAggregate
@@ -167,10 +173,110 @@ input NestedStringWithAggregatesFilter {
   startsWith: String
 }
 
+type Organization {
+  createdAt: DateTime!
+  id: String!
+  name: String!
+}
+
+type OrganizationCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  id: Int!
+  name: Int!
+}
+
+input OrganizationCountOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+type OrganizationGroupBy {
+  _count: OrganizationCountAggregate
+  _max: OrganizationMaxAggregate
+  _min: OrganizationMinAggregate
+  createdAt: DateTime!
+  id: String!
+  name: String!
+}
+
+type OrganizationMaxAggregate {
+  createdAt: DateTime
+  id: String
+  name: String
+}
+
+input OrganizationMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+type OrganizationMinAggregate {
+  createdAt: DateTime
+  id: String
+  name: String
+}
+
+input OrganizationMinOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input OrganizationOrderByWithAggregationInput {
+  _count: OrganizationCountOrderByAggregateInput
+  _max: OrganizationMaxOrderByAggregateInput
+  _min: OrganizationMinOrderByAggregateInput
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input OrganizationOrderByWithRelationInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+enum OrganizationScalarFieldEnum {
+  createdAt
+  id
+  name
+}
+
+input OrganizationScalarWhereWithAggregatesInput {
+  AND: [OrganizationScalarWhereWithAggregatesInput!]
+  NOT: [OrganizationScalarWhereWithAggregatesInput!]
+  OR: [OrganizationScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  name: StringWithAggregatesFilter
+}
+
+input OrganizationWhereInput {
+  AND: [OrganizationWhereInput!]
+  NOT: [OrganizationWhereInput!]
+  OR: [OrganizationWhereInput!]
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringFilter
+}
+
+input OrganizationWhereUniqueInput {
+  id: String
+}
+
 type Query {
+  aggregateOrganization(cursor: OrganizationWhereUniqueInput, orderBy: [OrganizationOrderByWithRelationInput!], skip: Int, take: Int, where: OrganizationWhereInput): AggregateOrganization!
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
+  findFirstOrganization(cursor: OrganizationWhereUniqueInput, distinct: [OrganizationScalarFieldEnum!], orderBy: [OrganizationOrderByWithRelationInput!], skip: Int, take: Int, where: OrganizationWhereInput): Organization
   findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
+  groupByOrganization(by: [OrganizationScalarFieldEnum!]!, having: OrganizationScalarWhereWithAggregatesInput, orderBy: [OrganizationOrderByWithAggregationInput!], skip: Int, take: Int, where: OrganizationWhereInput): [OrganizationGroupBy!]!
   groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
+  organization(where: OrganizationWhereUniqueInput!): Organization
+  organizations(cursor: OrganizationWhereUniqueInput, distinct: [OrganizationScalarFieldEnum!], orderBy: [OrganizationOrderByWithRelationInput!], skip: Int, take: Int, where: OrganizationWhereInput): [Organization!]!
   user(where: UserWhereUniqueInput!): User
   users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
 }

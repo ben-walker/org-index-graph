@@ -1,3 +1,4 @@
+import { organizationResolvers } from "./Organization";
 import { userResolvers } from "./User";
 
-export const resolvers = [...userResolvers] as const;
+export const resolvers = [...organizationResolvers, ...userResolvers] as const;
