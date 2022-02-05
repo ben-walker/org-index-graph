@@ -20,7 +20,7 @@
     "seed": "ts-node ./prisma/seed"
   },
   "dependencies": {
-    "@prisma/client": "^3.8.1",
+    "@prisma/client": "~3.8.1",
     "apollo-server-express": "^3.6.2",
     "class-validator": "^0.13.2",
     "express": "^4.17.2",
