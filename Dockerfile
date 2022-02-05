@@ -7,7 +7,8 @@ RUN npm ci
 COPY prisma ./prisma/
 RUN npx prisma generate
 COPY . .
-RUN npm run build
+RUN npm run build \
+  && npm prune --production
 
 FROM node AS app
 WORKDIR /app
