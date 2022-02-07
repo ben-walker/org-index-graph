@@ -6,8 +6,8 @@ import { getGraphSchema } from "./schema";
 import { getServerContext } from "./server";
 
 const startGraph = async () => {
-  const schema = await getGraphSchema();
   const app = express();
+  const schema = await getGraphSchema();
   const server = new ApolloServer({
     context: getServerContext,
     introspection: IS_INTROSPECTION_ENABLED,
