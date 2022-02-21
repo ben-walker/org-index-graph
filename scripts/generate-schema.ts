@@ -1,3 +1,3 @@
-import { getGraphSchema } from "../src/schema";
+import { buildGraphSchema } from "../src/schema";
 
-getGraphSchema().catch(console.error);
+buildGraphSchema().catch(console.error);

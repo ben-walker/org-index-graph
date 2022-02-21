@@ -2,12 +2,12 @@ import { ApolloServer } from "apollo-server-express";
 import express from "express";
 
 import { CORS_ORIGIN, IS_INTROSPECTION_ENABLED, PORT } from "./env";
-import { getGraphSchema } from "./schema";
+import { buildGraphSchema } from "./schema";
 import { getServerContext } from "./server";
 
 const startGraph = async () => {
   const app = express();
-  const schema = await getGraphSchema();
+  const schema = await buildGraphSchema();
   const server = new ApolloServer({
     context: getServerContext,
     introspection: IS_INTROSPECTION_ENABLED,
