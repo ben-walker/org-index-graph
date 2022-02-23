@@ -4,11 +4,11 @@ import { PrismaClient } from "@prisma/client";
 import { SEED_COUNTS } from "./constants";
 
 const prisma = new PrismaClient();
-const { organizationCount, userCount } = SEED_COUNTS;
+const { organizations, users } = SEED_COUNTS;
 
 const seed = async () => {
   await prisma.user.createMany({
-    data: Array.from({ length: userCount }).map(() => ({
+    data: Array.from({ length: users }).map(() => ({
       email: faker.internet.email(),
       emailVerifiedAt: faker.datatype.boolean() ? faker.date.recent() : null,
     })),
@@ -16,7 +16,7 @@ const seed = async () => {
   });
 
   await prisma.organization.createMany({
-    data: Array.from({ length: organizationCount }).map(() => ({
+    data: Array.from({ length: organizations }).map(() => ({
       name: faker.company.companyName(),
     })),
     skipDuplicates: true,
