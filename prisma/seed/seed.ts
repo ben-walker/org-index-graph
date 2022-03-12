@@ -17,7 +17,7 @@ const seed = async () => {
 
   await prisma.organization.createMany({
     data: Array.from({ length: organizations }).map(() => ({
-      name: faker.company.companyName(),
+      name: faker.commerce.productName(),
     })),
     skipDuplicates: true,
   });
