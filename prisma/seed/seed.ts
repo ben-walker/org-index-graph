@@ -11,6 +11,7 @@ const seed = async () => {
     data: Array.from({ length: users }).map(() => ({
       email: faker.internet.email(),
       emailVerifiedAt: faker.datatype.boolean() ? faker.date.recent() : null,
+      name: faker.name.findName(),
     })),
     skipDuplicates: true,
   });

@@ -329,6 +329,7 @@ type User {
   email: String!
   emailVerifiedAt: DateTime
   id: String!
+  name: String!
 }
 
 type UserCountAggregate {
@@ -337,6 +338,7 @@ type UserCountAggregate {
   email: Int!
   emailVerifiedAt: Int!
   id: Int!
+  name: Int!
 }
 
 input UserCountOrderByAggregateInput {
@@ -344,6 +346,7 @@ input UserCountOrderByAggregateInput {
   email: SortOrder
   emailVerifiedAt: SortOrder
   id: SortOrder
+  name: SortOrder
 }
 
 type UserGroupBy {
@@ -354,6 +357,7 @@ type UserGroupBy {
   email: String!
   emailVerifiedAt: DateTime
   id: String!
+  name: String!
 }
 
 type UserMaxAggregate {
@@ -361,6 +365,7 @@ type UserMaxAggregate {
   email: String
   emailVerifiedAt: DateTime
   id: String
+  name: String
 }
 
 input UserMaxOrderByAggregateInput {
@@ -368,6 +373,7 @@ input UserMaxOrderByAggregateInput {
   email: SortOrder
   emailVerifiedAt: SortOrder
   id: SortOrder
+  name: SortOrder
 }
 
 type UserMinAggregate {
@@ -375,6 +381,7 @@ type UserMinAggregate {
   email: String
   emailVerifiedAt: DateTime
   id: String
+  name: String
 }
 
 input UserMinOrderByAggregateInput {
@@ -382,6 +389,7 @@ input UserMinOrderByAggregateInput {
   email: SortOrder
   emailVerifiedAt: SortOrder
   id: SortOrder
+  name: SortOrder
 }
 
 input UserOrderByWithAggregationInput {
@@ -392,6 +400,7 @@ input UserOrderByWithAggregationInput {
   email: SortOrder
   emailVerifiedAt: SortOrder
   id: SortOrder
+  name: SortOrder
 }
 
 input UserOrderByWithRelationInput {
@@ -399,6 +408,7 @@ input UserOrderByWithRelationInput {
   email: SortOrder
   emailVerifiedAt: SortOrder
   id: SortOrder
+  name: SortOrder
 }
 
 enum UserScalarFieldEnum {
@@ -406,6 +416,7 @@ enum UserScalarFieldEnum {
   email
   emailVerifiedAt
   id
+  name
 }
 
 input UserScalarWhereWithAggregatesInput {
@@ -416,6 +427,7 @@ input UserScalarWhereWithAggregatesInput {
   email: StringWithAggregatesFilter
   emailVerifiedAt: DateTimeNullableWithAggregatesFilter
   id: StringWithAggregatesFilter
+  name: StringWithAggregatesFilter
 }
 
 input UserWhereInput {
@@ -426,6 +438,7 @@ input UserWhereInput {
   email: StringFilter
   emailVerifiedAt: DateTimeNullableFilter
   id: StringFilter
+  name: StringFilter
 }
 
 input UserWhereUniqueInput {

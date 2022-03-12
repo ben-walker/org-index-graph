@@ -22,4 +22,5 @@ model User {
   email           String    @unique
   emailVerifiedAt DateTime?
   id              String    @id @default(cuid())
+  name            String
 }
