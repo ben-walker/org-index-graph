@@ -1,4 +1,5 @@
 export const SEED_COUNTS = {
-  organizations: 100,
+  contributions: 1_600,
+  organizations: 200,
   users: 1_000,
 };

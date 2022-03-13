@@ -4,6 +4,7 @@ import {
   FindManyOrganizationResolver,
   FindUniqueOrganizationResolver,
   GroupByOrganizationResolver,
+  OrganizationRelationsResolver,
 } from "@generated/type-graphql";
 
 export const OrganizationResolvers = [
@@ -12,4 +13,5 @@ export const OrganizationResolvers = [
   FindManyOrganizationResolver,
   FindUniqueOrganizationResolver,
   GroupByOrganizationResolver,
+  OrganizationRelationsResolver,
 ] as const;

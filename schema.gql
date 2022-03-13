@@ -3,6 +3,12 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type AggregateContribution {
+  _count: ContributionCountAggregate
+  _max: ContributionMaxAggregate
+  _min: ContributionMinAggregate
+}
+
 type AggregateOrganization {
   _count: OrganizationCountAggregate
   _max: OrganizationMaxAggregate
@@ -13,6 +19,130 @@ type AggregateUser {
   _count: UserCountAggregate
   _max: UserMaxAggregate
   _min: UserMinAggregate
+}
+
+type Contribution {
+  createdAt: DateTime!
+  id: String!
+  organization: Organization!
+  organizationId: String!
+  user: User!
+  userId: String!
+}
+
+type ContributionCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  id: Int!
+  organizationId: Int!
+  userId: Int!
+}
+
+input ContributionCountOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  organizationId: SortOrder
+  userId: SortOrder
+}
+
+type ContributionGroupBy {
+  _count: ContributionCountAggregate
+  _max: ContributionMaxAggregate
+  _min: ContributionMinAggregate
+  createdAt: DateTime!
+  id: String!
+  organizationId: String!
+  userId: String!
+}
+
+input ContributionListRelationFilter {
+  every: ContributionWhereInput
+  none: ContributionWhereInput
+  some: ContributionWhereInput
+}
+
+type ContributionMaxAggregate {
+  createdAt: DateTime
+  id: String
+  organizationId: String
+  userId: String
+}
+
+input ContributionMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  organizationId: SortOrder
+  userId: SortOrder
+}
+
+type ContributionMinAggregate {
+  createdAt: DateTime
+  id: String
+  organizationId: String
+  userId: String
+}
+
+input ContributionMinOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  organizationId: SortOrder
+  userId: SortOrder
+}
+
+input ContributionOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ContributionOrderByWithAggregationInput {
+  _count: ContributionCountOrderByAggregateInput
+  _max: ContributionMaxOrderByAggregateInput
+  _min: ContributionMinOrderByAggregateInput
+  createdAt: SortOrder
+  id: SortOrder
+  organizationId: SortOrder
+  userId: SortOrder
+}
+
+input ContributionOrderByWithRelationInput {
+  createdAt: SortOrder
+  id: SortOrder
+  organization: OrganizationOrderByWithRelationInput
+  organizationId: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrder
+}
+
+enum ContributionScalarFieldEnum {
+  createdAt
+  id
+  organizationId
+  userId
+}
+
+input ContributionScalarWhereWithAggregatesInput {
+  AND: [ContributionScalarWhereWithAggregatesInput!]
+  NOT: [ContributionScalarWhereWithAggregatesInput!]
+  OR: [ContributionScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  organizationId: StringWithAggregatesFilter
+  userId: StringWithAggregatesFilter
+}
+
+input ContributionWhereInput {
+  AND: [ContributionWhereInput!]
+  NOT: [ContributionWhereInput!]
+  OR: [ContributionWhereInput!]
+  createdAt: DateTimeFilter
+  id: StringFilter
+  organization: OrganizationRelationFilter
+  organizationId: StringFilter
+  user: UserRelationFilter
+  userId: StringFilter
+}
+
+input ContributionWhereUniqueInput {
+  id: String
 }
 
 """
@@ -174,9 +304,15 @@ input NestedStringWithAggregatesFilter {
 }
 
 type Organization {
+  _count: OrganizationCount
+  contributions(cursor: ContributionWhereUniqueInput, distinct: [ContributionScalarFieldEnum!], orderBy: [ContributionOrderByWithRelationInput!], skip: Int, take: Int, where: ContributionWhereInput): [Contribution!]!
   createdAt: DateTime!
   id: String!
   name: String!
+}
+
+type OrganizationCount {
+  contributions: Int!
 }
 
 type OrganizationCountAggregate {
@@ -235,9 +371,15 @@ input OrganizationOrderByWithAggregationInput {
 }
 
 input OrganizationOrderByWithRelationInput {
+  contributions: ContributionOrderByRelationAggregateInput
   createdAt: SortOrder
   id: SortOrder
   name: SortOrder
+}
+
+input OrganizationRelationFilter {
+  is: OrganizationWhereInput
+  isNot: OrganizationWhereInput
 }
 
 enum OrganizationScalarFieldEnum {
@@ -259,6 +401,7 @@ input OrganizationWhereInput {
   AND: [OrganizationWhereInput!]
   NOT: [OrganizationWhereInput!]
   OR: [OrganizationWhereInput!]
+  contributions: ContributionListRelationFilter
   createdAt: DateTimeFilter
   id: StringFilter
   name: StringFilter
@@ -269,10 +412,15 @@ input OrganizationWhereUniqueInput {
 }
 
 type Query {
+  aggregateContribution(cursor: ContributionWhereUniqueInput, orderBy: [ContributionOrderByWithRelationInput!], skip: Int, take: Int, where: ContributionWhereInput): AggregateContribution!
   aggregateOrganization(cursor: OrganizationWhereUniqueInput, orderBy: [OrganizationOrderByWithRelationInput!], skip: Int, take: Int, where: OrganizationWhereInput): AggregateOrganization!
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
+  contribution(where: ContributionWhereUniqueInput!): Contribution
+  contributions(cursor: ContributionWhereUniqueInput, distinct: [ContributionScalarFieldEnum!], orderBy: [ContributionOrderByWithRelationInput!], skip: Int, take: Int, where: ContributionWhereInput): [Contribution!]!
+  findFirstContribution(cursor: ContributionWhereUniqueInput, distinct: [ContributionScalarFieldEnum!], orderBy: [ContributionOrderByWithRelationInput!], skip: Int, take: Int, where: ContributionWhereInput): Contribution
   findFirstOrganization(cursor: OrganizationWhereUniqueInput, distinct: [OrganizationScalarFieldEnum!], orderBy: [OrganizationOrderByWithRelationInput!], skip: Int, take: Int, where: OrganizationWhereInput): Organization
   findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
+  groupByContribution(by: [ContributionScalarFieldEnum!]!, having: ContributionScalarWhereWithAggregatesInput, orderBy: [ContributionOrderByWithAggregationInput!], skip: Int, take: Int, where: ContributionWhereInput): [ContributionGroupBy!]!
   groupByOrganization(by: [OrganizationScalarFieldEnum!]!, having: OrganizationScalarWhereWithAggregatesInput, orderBy: [OrganizationOrderByWithAggregationInput!], skip: Int, take: Int, where: OrganizationWhereInput): [OrganizationGroupBy!]!
   groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
   organization(where: OrganizationWhereUniqueInput!): Organization
@@ -325,11 +473,17 @@ input StringWithAggregatesFilter {
 }
 
 type User {
+  _count: UserCount
+  contributions(cursor: ContributionWhereUniqueInput, distinct: [ContributionScalarFieldEnum!], orderBy: [ContributionOrderByWithRelationInput!], skip: Int, take: Int, where: ContributionWhereInput): [Contribution!]!
   createdAt: DateTime!
   email: String!
   emailVerifiedAt: DateTime
   id: String!
   name: String!
+}
+
+type UserCount {
+  contributions: Int!
 }
 
 type UserCountAggregate {
@@ -404,11 +558,17 @@ input UserOrderByWithAggregationInput {
 }
 
 input UserOrderByWithRelationInput {
+  contributions: ContributionOrderByRelationAggregateInput
   createdAt: SortOrder
   email: SortOrder
   emailVerifiedAt: SortOrder
   id: SortOrder
   name: SortOrder
+}
+
+input UserRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
 }
 
 enum UserScalarFieldEnum {
@@ -434,6 +594,7 @@ input UserWhereInput {
   AND: [UserWhereInput!]
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
+  contributions: ContributionListRelationFilter
   createdAt: DateTimeFilter
   email: StringFilter
   emailVerifiedAt: DateTimeNullableFilter

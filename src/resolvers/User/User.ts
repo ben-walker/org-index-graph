@@ -4,6 +4,7 @@ import {
   FindManyUserResolver,
   FindUniqueUserResolver,
   GroupByUserResolver,
+  UserRelationsResolver,
 } from "@generated/type-graphql";
 
 export const UserResolvers = [
@@ -12,4 +13,5 @@ export const UserResolvers = [
   FindManyUserResolver,
   FindUniqueUserResolver,
   GroupByUserResolver,
+  UserRelationsResolver,
 ] as const;

@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import { SEED_COUNTS } from "./constants";
 
 const prisma = new PrismaClient();
-const { organizations, users } = SEED_COUNTS;
+const { contributions, organizations, users } = SEED_COUNTS;
 
 const seed = async () => {
   await prisma.user.createMany({
@@ -19,6 +19,19 @@ const seed = async () => {
   await prisma.organization.createMany({
     data: Array.from({ length: organizations }).map(() => ({
       name: faker.commerce.productName(),
+    })),
+    skipDuplicates: true,
+  });
+
+  const userIds = (await prisma.user.findMany()).map(({ id }) => id);
+  const organizationIds = (await prisma.organization.findMany()).map(
+    ({ id }) => id
+  );
+
+  await prisma.contribution.createMany({
+    data: Array.from({ length: contributions }).map(() => ({
+      organizationId: faker.random.arrayElement(organizationIds),
+      userId: faker.random.arrayElement(userIds),
     })),
     skipDuplicates: true,
   });
