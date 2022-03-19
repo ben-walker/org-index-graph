@@ -34,4 +34,6 @@ model User {
   emailVerifiedAt DateTime?
   id              String         @id @default(cuid())
   name            String
+  /// @TypeGraphQL.omit(output: true, input: true)
+  passwordHash    String
 }

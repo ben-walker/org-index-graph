@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { PrismaClient } from "@prisma/client";
 
-import { SEED_COUNTS } from "./constants";
+import { PASSWORD_HASH, SEED_COUNTS } from "./constants";
 
 const prisma = new PrismaClient();
 const { contributions, organizations, users } = SEED_COUNTS;
@@ -12,6 +12,7 @@ const seed = async () => {
       email: faker.internet.email(),
       emailVerifiedAt: faker.datatype.boolean() ? faker.date.recent() : null,
       name: faker.name.findName(),
+      passwordHash: PASSWORD_HASH,
     })),
     skipDuplicates: true,
   });
