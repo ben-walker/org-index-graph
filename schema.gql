@@ -493,6 +493,7 @@ type UserCountAggregate {
   emailVerifiedAt: Int!
   id: Int!
   name: Int!
+  passwordHash: Int!
 }
 
 input UserCountOrderByAggregateInput {
@@ -512,6 +513,7 @@ type UserGroupBy {
   emailVerifiedAt: DateTime
   id: String!
   name: String!
+  passwordHash: String!
 }
 
 type UserMaxAggregate {
@@ -520,6 +522,7 @@ type UserMaxAggregate {
   emailVerifiedAt: DateTime
   id: String
   name: String
+  passwordHash: String
 }
 
 input UserMaxOrderByAggregateInput {
@@ -536,6 +539,7 @@ type UserMinAggregate {
   emailVerifiedAt: DateTime
   id: String
   name: String
+  passwordHash: String
 }
 
 input UserMinOrderByAggregateInput {
@@ -577,6 +581,7 @@ enum UserScalarFieldEnum {
   emailVerifiedAt
   id
   name
+  passwordHash
 }
 
 input UserScalarWhereWithAggregatesInput {
