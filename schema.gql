@@ -204,7 +204,13 @@ input DateTimeWithAggregatesFilter {
   notIn: [DateTime!]
 }
 
+input LogInInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
+  logIn(userData: LogInInput!): AuthPayload!
   signUp(userData: SignUpInput!): AuthPayload!
 }
 

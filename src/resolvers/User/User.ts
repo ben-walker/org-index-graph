@@ -7,7 +7,7 @@ import {
   User,
   UserRelationsResolver,
 } from "@generated/type-graphql";
-import { argon2id, hash } from "argon2";
+import { argon2id, hash, verify } from "argon2";
 import { IsEmail } from "class-validator";
 import {
   Arg,
@@ -40,6 +40,15 @@ class SignUpInput implements Partial<User> {
   password!: string;
 }
 
+@InputType()
+class LogInInput implements Partial<User> {
+  @Field()
+  email!: string;
+
+  @Field()
+  password!: string;
+}
+
 @Resolver()
 class UserAuthResolver {
   @Mutation(() => AuthPayload)
@@ -51,6 +60,27 @@ class UserAuthResolver {
     const user = await prisma.user.create({
       data: { email, name, passwordHash },
     });
+
+    return { user };
+  }
+
+  @Mutation(() => AuthPayload)
+  async logIn(
+    @Arg("userData") { email, password }: LogInInput,
+    @Ctx() { prisma }: Context
+  ): Promise<AuthPayload> {
+    const errorMessage = "Incorrect email or password";
+    const user = await prisma.user.findUnique({ where: { email } });
+
+    if (!user) {
+      throw new Error(errorMessage);
+    }
+
+    const isPasswordMatch = await verify(user.passwordHash, password);
+
+    if (!isPasswordMatch) {
+      throw new Error(errorMessage);
+    }
 
     return { user };
   }
