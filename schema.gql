@@ -22,6 +22,7 @@ type AggregateUser {
 }
 
 type AuthPayload {
+  accessToken: String!
   user: User!
 }
 

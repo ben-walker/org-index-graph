@@ -20,11 +20,16 @@ import {
 } from "type-graphql";
 
 import { Context } from "../../server";
+import { LOG_IN_ERROR } from "./constants";
+import { signAccessToken } from "./utils";
 
 @ObjectType()
 class AuthPayload {
   @Field()
   user!: User;
+
+  @Field()
+  accessToken!: string;
 }
 
 @InputType()
@@ -60,8 +65,9 @@ class UserAuthResolver {
     const user = await prisma.user.create({
       data: { email, name, passwordHash },
     });
+    const accessToken = signAccessToken(user);
 
-    return { user };
+    return { accessToken, user };
   }
 
   @Mutation(() => AuthPayload)
@@ -69,20 +75,21 @@ class UserAuthResolver {
     @Arg("userData") { email, password }: LogInInput,
     @Ctx() { prisma }: Context
   ): Promise<AuthPayload> {
-    const errorMessage = "Incorrect email or password";
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (!user) {
-      throw new Error(errorMessage);
+      throw new Error(LOG_IN_ERROR);
     }
 
     const isPasswordMatch = await verify(user.passwordHash, password);
 
     if (!isPasswordMatch) {
-      throw new Error(errorMessage);
+      throw new Error(LOG_IN_ERROR);
     }
 
-    return { user };
+    const accessToken = signAccessToken(user);
+
+    return { accessToken, user };
   }
 }
 
