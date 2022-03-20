@@ -1,8 +1,11 @@
 import { User } from "@prisma/client";
-import jwt from "jsonwebtoken";
+import { sign } from "jsonwebtoken";
 
 import { JWT_SECRET } from "../../env";
 import { ACCESS_TOKEN_EXPIRY } from "./constants";
 
-export const signAccessToken = (user: User) =>
-  jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: ACCESS_TOKEN_EXPIRY });
+export const signAccessToken = ({ id }: User) =>
+  sign({}, JWT_SECRET, {
+    expiresIn: ACCESS_TOKEN_EXPIRY,
+    subject: id,
+  });
