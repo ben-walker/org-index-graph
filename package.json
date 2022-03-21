@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@prisma/client": "~3.11.0",
-    "apollo-server-express": "^3.6.2",
+    "apollo-server-express": "^3.6.5",
     "argon2": "^0.28.5",
     "class-validator": "^0.13.2",
     "express": "^4.17.2",
