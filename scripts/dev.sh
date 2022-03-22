@@ -6,6 +6,7 @@
 # Set environment variables
 export DATABASE_URL="postgresql://postgres:password@localhost:5432"
 export CORS_ORIGIN="https://studio.apollographql.com"
+export JWT_SECRET="JWT_SECRET"
 
 # Start compose services
 docker compose up --detach

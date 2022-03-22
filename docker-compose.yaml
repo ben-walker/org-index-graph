@@ -20,5 +20,6 @@ services:
       NODE_ENV: production
       DATABASE_URL: postgresql://postgres:password@postgres:5432
       IS_INTROSPECTION_ENABLED: true
+      JWT_SECRET: JWT_SECRET
     ports:
       - 4000:4000
