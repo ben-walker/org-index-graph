@@ -16,6 +16,7 @@ import {
   InputType,
   Mutation,
   ObjectType,
+  Query,
   Resolver,
 } from "type-graphql";
 
@@ -55,7 +56,7 @@ class LogInInput implements Partial<User> {
 }
 
 @Resolver()
-class UserAuthResolver {
+class AuthResolver {
   @Mutation(() => AuthPayload)
   async signUp(
     @Arg("userData") { email, name, password }: SignUpInput,
@@ -93,12 +94,28 @@ class UserAuthResolver {
   }
 }
 
+@Resolver()
+class ViewerResolver {
+  @Query(() => User)
+  viewer(@Ctx() { prisma, userId }: Context): Promise<User> {
+    if (!userId) {
+      throw new Error("No User ID in context");
+    }
+
+    return prisma.user.findUnique({
+      rejectOnNotFound: true,
+      where: { id: userId },
+    });
+  }
+}
+
 export const UserResolvers = [
   AggregateUserResolver,
+  AuthResolver,
   FindFirstUserResolver,
   FindManyUserResolver,
   FindUniqueUserResolver,
   GroupByUserResolver,
-  UserAuthResolver,
   UserRelationsResolver,
+  ViewerResolver,
 ] as const;
