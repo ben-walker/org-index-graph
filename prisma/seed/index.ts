@@ -1,1 +1,1 @@
-import "./seed";
+export * from "./seed";
