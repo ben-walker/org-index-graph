@@ -23,7 +23,7 @@ jobs:
           npm run generate:schema
 
       - name: Commit Schema Changes
-        uses: stefanzweifel/git-auto-commit-action@v4.14.0
+        uses: stefanzweifel/git-auto-commit-action@v4.14.1
         with:
           commit_message: "[GitHub Actions] Synchronize graph schema"
           file_pattern: schema.gql
