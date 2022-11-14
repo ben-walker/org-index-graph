@@ -1,4 +1,4 @@
-FROM node:16.14.2-alpine3.15 AS node
+FROM node:19.0.1-alpine3.15 AS node
 
 FROM node AS build
 WORKDIR /build
